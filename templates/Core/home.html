@@ -1,0 +1,97 @@
+{% extends 'layout.html' %} {% load static %} {% block title %} Hello, World! |
+Home {% endblock %} {% block styles %}
+<style></style>
+{% endblock %} {% block content %}
+<div class="image">
+  <img src="{% static 'images/background.png' %}" alt="" />
+</div>
+<main>
+  <section class="intro">
+    <div></div>
+    <h1>Welcome to Hello World Blog!</h1>
+    <p>
+      Dive into the latest trends and tips in technology and coding. Let's code
+      the future together!
+    </p>
+    <a href="#blogs"><i class="fa-solid fa-caret-down"></i></a>
+  </section>
+  <section class="blogs" id="blogs">
+    <h2>Latest Blogs</h2>
+    <div class="cards">
+      {% for article in articles %}
+      <div class="card">
+        <a href="{% url 'blog_page' article.id %}">
+          <h3>{{article.title}}</h3>
+          {% if article.cover_img %}
+          <img src="{{article.cover_img}}" alt="" />
+          {% else %}
+          <img src="{% static 'images/blank.jpg' %}" alt="" />
+          {% endif %}
+        </a>
+        <ul>
+          {% for tag in article.tags %}
+          <li><a href="{% url 'search' tag %}">{{tag}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'blogs' %}" class="btn">Discover more</a>
+  </section>
+  <div class="container">
+    <section class="about">
+      <h2>About Us</h2>
+      <p>
+        Welcome to the Hello World Blog, your ultimate destination for tech
+        enthusiasts, programmers, and innovators. Our mission is to demystify
+        the world of technology, making it accessible and exciting for everyone,
+        from beginners to seasoned professionals.
+      </p>
+    </section>
+    <div class="story">
+      <h2>Our Story</h2>
+      <p>
+        Founded by a group of passionate developers, the Hello World Blog was
+        created to foster a community where knowledge is shared, ideas are
+        exchanged, and creativity is nurtured. We believe that technology has
+        the power to transform lives, and we are here to guide you on your
+        journey to harnessing its potential.
+      </p>
+    </div>
+    <section class="highlights">
+      <h2>What You'll Find Here</h2>
+      <ul>
+        <li>
+          In-Depth Tutorials: Step-by-step guides to help you master new
+          programming languages, frameworks, and tools.
+        </li>
+        <li>
+          Latest Tech News: Stay updated with the newest trends, breakthroughs,
+          and insights in the tech industry.
+        </li>
+        <li>
+          Inspirational Stories: Discover how tech innovators and startups are
+          changing the world.
+        </li>
+        <li>
+          Tips and Tricks: Practical advice to enhance your coding skills and
+          boost your productivity.
+        </li>
+      </ul>
+    </section>
+    <section class="cta">
+      <h2>Join Our Community</h2>
+      <p>
+        The Hello World Blog is more than just a website; it's a community.
+        Connect with like-minded individuals, participate in discussions, and
+        collaborate on projects. Whether you're here to learn, share, or just
+        stay informed, you're in the right place.
+      </p>
+      <a href="{% url 'forum' %}" class="btn">Get Started</a>
+    </section>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2024 <a href="#">Hello World</a> Blog</p>
+</footer>
+{% endblock %}
