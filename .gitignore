@@ -1,0 +1,13 @@
+.venv/
+.env
+.idea/
+.idea
+*.pyc
+*.pyc
+*.sqlite3
+*.sqlite3
+staticfiles/
+staticfiles
+media/
+media
+db.sqlite3
