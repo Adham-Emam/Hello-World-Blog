@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "hello-world/wsgi.py",
@@ -10,5 +11,15 @@
       "src": "/(.*)",
       "dest": "hello-world/wsgi.py"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "PYTHON_VERSION": "3.9"
+    },
+    "commands": [
+      "python manage.py migrate",
+      "python manage.py collectstatic --noinput"
+    ]
+  },
+  "outputDirectory": "public"
 }
